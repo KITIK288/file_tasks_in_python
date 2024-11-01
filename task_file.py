@@ -8,9 +8,9 @@
 #
 # и разбейте ее на части при помощи метода split().
 
-def file_task1():
+def file_task1(file1, file1_result):
     summa = 0
-    with open('task1_file.txt', 'r') as f:
+    with open(file1, 'r') as f:
         int_number = f.read()
         print(int_number)
         a = int_number.split()
@@ -19,11 +19,11 @@ def file_task1():
             i = int(i)
             summa += i
     print(summa)
-    with open('task1_file_result.txt', 'w') as f:
+    with open(file1_result, 'w') as f:
         f.write(str(summa))
 
 
-file_task1()
+file_task1("task1_file.txt", "task1_file_result.txt")
 
 # Во входном файле записана одна текстовая строка, возможно, содержащая пробелы.
 #

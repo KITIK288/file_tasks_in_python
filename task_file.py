@@ -19,8 +19,11 @@ def file_task1():
             i = int(i)
             summa += i
     print(summa)
+    with open('task1_file_result.txt', 'w') as f:
+        f.write(str(summa))
 
-# file_task1()
+
+file_task1()
 
 # Во входном файле записана одна текстовая строка, возможно, содержащая пробелы.
 #

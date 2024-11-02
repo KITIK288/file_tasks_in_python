@@ -11,19 +11,22 @@
 def file_task1(file1, file1_result):
     summa = 0
     with open(file1, 'r') as f:
-        int_number = f.read()
-        print(int_number)
-        a = int_number.split()
-        print(a)
-        for i in a:
-            i = int(i)
-            summa += i
-    print(summa)
+        for i in f.read().split():
+            summa += int(i)
     with open(file1_result, 'w') as f:
         f.write(str(summa))
 
+def file_task1_v2(file1, file1_result):
+    with open(file1, 'r') as f:
+        summa = 0
+        for x in map( lambda i: int(i), f.read().split()):
+            summa += x
+        with open(file1_result, 'w') as f:
+            f.write(str(summa))
 
-file_task1("task1_file.txt", "task1_file_result.txt")
+#file_task1("task1_file.txt", "task1_file_result.txt")
+
+#file_task1_v2("task1_file.txt", "task1_file_result.txt")
 
 # Во входном файле записана одна текстовая строка, возможно, содержащая пробелы.
 #
@@ -33,10 +36,7 @@ file_task1("task1_file.txt", "task1_file_result.txt")
 
 def file_task2():
     with open('task2_file.txt', 'r') as f:
-        string = f.read()
-        print(string)
-        reversed_string = string[::-1]
-        print(reversed_string)
+        print(f.read()[::-1])
 
 # file_task2()
 
@@ -48,8 +48,7 @@ def file_task2():
 
 def file_task3():
     with open('task3_file.txt', 'r') as f:
-        srting = f.readlines()
-        for i in reversed(srting):
+        for i in reversed(f.readlines()):
             print(i)
 
 # file_task3()
@@ -60,10 +59,7 @@ def file_task3():
 
 def file_task4():
     with open('task4_file.txt', 'r') as f:
-        string = f.read()
-        print(string)
-        reversed_string = string[::-1]
-        print(reversed_string)
+        print(f.read()[::-1])
 
 # file_task4()
 
@@ -72,21 +68,17 @@ def file_task4():
 # В данной задаче удобно считать список строк входного файла целиком при помощи метода readlines().
 
 def file_task5():
-    maxs_lens = 0
-    maxs = ""
     with open('task5_file.txt', 'r') as f:
-        string = f.readlines()
-        string = [line.rstrip() for line in string]
-        print(string)
-        for i in string:
+        max_len = 0
+        strings = ""
+        for i in f.readlines():
             a = len(i)
-            print(a)
-            if a > maxs_lens:
-                maxs_lens = a
-                maxs = i + "\n"
-            elif a == maxs_lens:
-                maxs += i
-    print(maxs)
+            if a > max_len:
+                max_len = a
+                strings = i
+            elif a == max_len:
+                strings += i
+        print(strings)
 
 # file_task5()
 
@@ -95,15 +87,12 @@ def file_task5():
 # Входной файл может быть очень большим, поэтому считывать файл нужно посимвольно.
 
 def file_task6():
-    with open('task6_file.txt', 'r') as f:
-        string = f.readlines()
-        symbols  = []
-        result =  ""
-        for symbol in string:
-            symbols += symbol
-        for symbol in symbols:
-            print(symbol)
-            if symbol == "@":
+    result = ""
+    with open("task6_file.txt", 'r') as f:
+        string = f.read()
+        for char in string:
+            print(char)
+            if char == "@":
                 result = "Yes"
         if result != "Yes":
             result = "No"
